@@ -2,6 +2,9 @@
 import requests
 import discord
 from readtable import lookupMove, lookupMoveList, findHitbox, findCharPic
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -47,5 +50,5 @@ async def on_message(message):
     if message.content.startswith('Ping page'):
         await message.channel.send(requests.get('https://wiki.gbl.gg/index.php?title=Vampire_Savior/Aulbath/Data&action=edit').status_code)
         
-
-client.run('MTI3MzM4NDc0OTUzNjM3OTAxMQ.GrCtv1.myG-LGf6zKQQuZeWvLcIJ7eclbClTOZVWBwXIY')
+DC_TOKEN = os.getenv('DC_TOKEN')
+client.run(DC_TOKEN)

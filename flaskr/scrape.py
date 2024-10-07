@@ -27,7 +27,7 @@ characterList = [
 
 #change targeted character name here
 request = requests.get(
-         f"https://wiki.gbl.gg/index.php?title=Vampire_Savior/Zabel/Data&action=edit"
+         f"https://wiki.gbl.gg/index.php?title=Vampire_Savior/Morrigan/Data&action=edit"
      )
 
 moveChunks = request.text.split("FrameData-VSAV")

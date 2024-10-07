@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Pviet95.
+      POSTGRES_DB: VSAV
+    
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    

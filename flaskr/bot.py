@@ -66,9 +66,16 @@ async def on_message(message):
             displaymoves = lookupMove(inputChara, inputMove)
             embed.add_field(name="", value=str(displaymoves))
             displayHitboxes = findHitbox(inputChara, inputMove)
-            for x in displayHitboxes:
-                # print(x)
-                embed.set_image(url=x)
+            try:
+                for x in displayHitboxes:
+                    # print(x)
+                    embed.set_image(url=x)
+                    #for some reason sending embed here will send all of the hitbox pics if there are multiple but in separate embeds
+                    #await message.channel.send(embed=embed)
+            except:
+                await message.channel.send(
+                "Move does not exist. First letter of character name is capitalized. Use 'movelist' to return a character's movelist (VSAVbot Victor movelist)."
+            )
             await message.channel.send(embed=embed)
 
     if message.content.startswith("Ping page"):

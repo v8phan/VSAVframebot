@@ -31,7 +31,6 @@ listoftuples = [
 
 # parses through text element fstring
 
-
 # split text into separate lines, check if field exists in chunk first
 def moveparser(text, sub1, sub2):
 
@@ -47,11 +46,12 @@ def moveparser(text, sub1, sub2):
         #"Gallon | "
         #"Jedah | "
         #"Lei-Lei | "
+        "Morrigan | "
         #"Lilith | "
         #"Q-Bee | "
         #"Sasquatch | "
         #"Victor | "
-        "Zabel | " 
+        #"Zabel | " 
         in text[idx1 + len(sub1) : idx2]
     ):
         return ""

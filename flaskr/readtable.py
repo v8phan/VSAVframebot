@@ -73,6 +73,12 @@ engine = create_engine(connection_str, echo=True)
 #                 + x[13]
 #             )
 
+def formatMove(dic):
+    print(dic)
+    formattedString = ""
+    for item in dic:
+        formattedString += item + ': ' + str(dic[item]) + '\n'
+    return formattedString
 
 def lookupMove(character, request):
     stmt = select(
@@ -129,8 +135,7 @@ def lookupMove(character, request):
             for key, value in movepropdict.items():
                 if value is not None:
                     res[key] = value
-            for key, value in res.items():
-                return(f"{key}: {value}")
+            return formatMove(res)
 
 # lookupMove('Victor', '5LP')
 

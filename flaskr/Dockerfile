@@ -2,26 +2,13 @@
 # 'docker build -t VSAVbot' to build image
 # 'docker run VSAVbot' to run
 # must rebuild docker image whenever you make changes
-FROM python:3.12
-#FROM gorialis/discord.py
+FROM python:3
+FROM gorialis/discord.py
 
-# Prevents Python from writing pyc files.
-ENV PYTHONDONTWRITEBYTECODE=1
-# Keeps Python from buffering stdout and stderr to avoid situations where
-# the application crashes without emitting any logs due to buffering.
-ENV PYTHONUNBUFFERED=1
+RUN mkdir -p /usr/src/bot
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+WORKDIR /usr/src/bot
 
-WORKDIR /app
-
-# Download dependencies as a separate step to take advantage of Docker's caching.
-# Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
-# Leverage a bind mount to requirements.txt to avoid having to copy them into
-# into this layer.
-RUN --mount=type=cache,target=/root/.cache/pip \
-    --mount=type=bind,source=requirements.txt,target=requirements.txt \
-    python -m pip install -r requirements.txt
-
-# Copy the source code into the container.
 COPY . .
-
-CMD ["python", "./bot.py"]
+CMD [ "python3", "bot.py" ]

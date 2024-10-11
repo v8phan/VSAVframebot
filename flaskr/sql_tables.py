@@ -52,11 +52,17 @@ class Move(Base):
 
 #engine
 
-user = 'postgres'
-password = 'Pviet95.'
-host = 'localhost'
-port = '5432'
-database = 'VSAV'
+# user = 'postgres'
+# password = 'Pviet95.'
+# host = 'localhost'
+# port = '5432'
+# database = 'VSAV'
+
+user = "postgres.zuidpuiggoibnnvrtbfn"
+password = "xDohks76sW%Y"
+host = "aws-0-us-east-1.pooler.supabase.com"
+port = "6543"
+database = "postgres"
 
 # for creating connection string
 connection_str = f'postgresql://{user}:{password}@{host}:{port}/{database}'

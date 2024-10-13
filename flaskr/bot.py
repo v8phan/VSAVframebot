@@ -46,6 +46,10 @@ async def on_message(message):
             messagesplit = message.content.split()
 
             inputChara = messagesplit[1].capitalize()
+            if inputChara == 'Lei-lei':
+                inputChara = 'Lei-Lei'
+            if inputChara == 'Q-bee':
+                inputChara = 'Q-Bee'
             inputMove = messagesplit[2].upper()
         except:
             await message.channel.send(

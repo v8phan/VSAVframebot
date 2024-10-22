@@ -13,5 +13,3 @@
 --append cursetime to curse move info
 
 --make hitbox images smaller
---create try catches for user that tries to look for move/character that doesn't exist
---dockerize then host on AWS?

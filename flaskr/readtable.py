@@ -140,6 +140,20 @@ def lookupMove(character, request):
 # lookupMove('Victor', '5LP')
 
 
+
+
+def getCharByAlias(dictionary, alias):
+    try:
+        for n, alist in dictionary.items():
+            for x in alist:
+                if alias == x:
+                    return(alist[0])
+        # print(type(alias))
+    except:
+        print('not found')
+
+
+
 def lookupMoveList(character):
     stmt = select(Move.input).where(Move.chara == character)
     with Session(engine) as session:

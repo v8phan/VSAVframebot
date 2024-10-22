@@ -1,7 +1,13 @@
 # This example requires the 'message_content' intent.
 import requests
 import discord
-from readtable import lookupMove, lookupMoveList, findHitbox, findCharPic
+from readtable import (
+    lookupMove,
+    lookupMoveList,
+    findHitbox,
+    findCharPic,
+    getCharByAlias,
+)
 from dotenv import load_dotenv
 import os
 
@@ -30,6 +36,24 @@ characterList = [
     "Zabel",
 ]
 
+charAliases = {
+    "Anakaris": ["Anakaris", "anakaris", "anak", "AN", "an"],
+    "Aulbath": ["Aulbath", "aulbath", "fish", "AU", "au"],
+    "Bishamon": ["Bishamon", "bishamon", "bish", "BI", "bi"],
+    "Bulleta": ["Bulleta", "bulleta", "bul", "bull", "BU", "bu"],
+    "Demitri": ["Demitri", "demitri", "dem", "DE", "de"],
+    "Felicia": ["Felicia", "felicia", "fel", "cat", "FE", "fe"],
+    "Gallon": ["Gallon", "gallon", "gal", "wolf", "GA", "ga"],
+    "Jedah": ["Jedah", "jedah", "jed", "JE", "je"],
+    "Lei-Lei": ["Lei-Lei", "lei-lei", "lei", "leilei", "LE", "le", "Lei-lei"],
+    "Lilith": ["Lilith", "lilith", "lil", "LI", "li"],
+    "Morrigan": ["Morrigan", "morrigan", "mor", "MO", "mo"],
+    "Q-Bee": ["Q-Bee", "q-bee", "bee", "QB", "qb"],
+    "Sasquatch": ["Sasquatch", "sasquatch", "sas", "SA", "sa"],
+    "Victor": ["Victor", "victor", "vic", "VI", "vi"],
+    "Zabel": ["Zabel", "zabel", "zab", "ZA", "za", "zombie"],
+}
+
 
 @client.event
 async def on_ready():
@@ -44,12 +68,12 @@ async def on_message(message):
     if message.content.startswith("VSAVbot"):
         try:
             messagesplit = message.content.split()
-
-            inputChara = messagesplit[1].capitalize()
-            if inputChara == 'Lei-lei':
-                inputChara = 'Lei-Lei'
-            if inputChara == 'Q-bee':
-                inputChara = 'Q-Bee'
+            inputChara = getCharByAlias(charAliases, messagesplit[1])
+            # inputChara = messagesplit[1].capitalize()
+            # if inputChara == "Lei-lei":
+            #     inputChara = "Lei-Lei"
+            # if inputChara == "Q-bee":
+            #     inputChara = "Q-Bee"
             inputMove = messagesplit[2].upper()
         except:
             await message.channel.send(
@@ -91,12 +115,13 @@ async def on_message(message):
     if message.content.startswith("vsavbot"):
         try:
             messagesplit = message.content.split()
+            inputChara = getCharByAlias(charAliases, messagesplit[1])
 
-            inputChara = messagesplit[1].capitalize()
-            if inputChara == 'Lei-lei':
-                inputChara = 'Lei-Lei'
-            if inputChara == 'Q-bee':
-                inputChara = 'Q-Bee'
+            # inputChara = messagesplit[1].capitalize()
+            # if inputChara == "Lei-lei":
+            #     inputChara = "Lei-Lei"
+            # if inputChara == "Q-bee":
+            #     inputChara = "Q-Bee"
             inputMove = messagesplit[2].upper()
         except:
             await message.channel.send(

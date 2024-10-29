@@ -1,4 +1,3 @@
-# This example requires the 'message_content' intent.
 import requests
 import discord
 from readtable import (
@@ -47,7 +46,7 @@ charAliases = {
     "Jedah": ["Jedah", "jedah", "jed", "JE", "je"],
     "Lei-Lei": ["Lei-Lei", "lei-lei", "lei", "leilei", "LE", "le", "Lei-lei"],
     "Lilith": ["Lilith", "lilith", "lil", "LI", "li"],
-    "Morrigan": ["Morrigan", "morrigan", "mor", "MO", "mo"],
+    "Morrigan": ["Morrigan", "morrigan", "mor", "MO", "mo", "bat"],
     "Q-Bee": ["Q-Bee", "q-bee", "bee", "QB", "qb"],
     "Sasquatch": ["Sasquatch", "sasquatch", "sas", "SA", "sa"],
     "Victor": ["Victor", "victor", "vic", "VI", "vi"],
@@ -69,11 +68,6 @@ async def on_message(message):
         try:
             messagesplit = message.content.split()
             inputChara = getCharByAlias(charAliases, messagesplit[1])
-            # inputChara = messagesplit[1].capitalize()
-            # if inputChara == "Lei-lei":
-            #     inputChara = "Lei-Lei"
-            # if inputChara == "Q-bee":
-            #     inputChara = "Q-Bee"
             inputMove = messagesplit[2].upper()
         except:
             await message.channel.send(
@@ -108,7 +102,7 @@ async def on_message(message):
                     # await message.channel.send(embed=embed)
             except:
                 await message.channel.send(
-                    "Move does not exist. First letter of character name is capitalized. Use 'movelist' to return a character's movelist (VSAVbot Victor movelist)."
+                    "Move does not exist. Use 'movelist' to return a character's movelist (VSAVbot Victor movelist)."
                 )
             await message.channel.send(embed=embed)
 
@@ -116,12 +110,6 @@ async def on_message(message):
         try:
             messagesplit = message.content.split()
             inputChara = getCharByAlias(charAliases, messagesplit[1])
-
-            # inputChara = messagesplit[1].capitalize()
-            # if inputChara == "Lei-lei":
-            #     inputChara = "Lei-Lei"
-            # if inputChara == "Q-bee":
-            #     inputChara = "Q-Bee"
             inputMove = messagesplit[2].upper()
         except:
             await message.channel.send(
@@ -156,7 +144,7 @@ async def on_message(message):
                     # await message.channel.send(embed=embed)
             except:
                 await message.channel.send(
-                    "Move does not exist. First letter of character name is capitalized. Use 'movelist' to return a character's movelist (VSAVbot Victor movelist)."
+                    "Move does not exist. Use 'movelist' to return a character's movelist (VSAVbot Victor movelist)."
                 )
             await message.channel.send(embed=embed)
 

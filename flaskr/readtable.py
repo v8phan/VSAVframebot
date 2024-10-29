@@ -144,10 +144,10 @@ def lookupMove(character, request):
 
 def getCharByAlias(dictionary, alias):
     try:
-        for n, alist in dictionary.items():
+        for key, alist in dictionary.items():
             for x in alist:
                 if alias == x:
-                    return(alist[0])
+                    return(key)
         # print(type(alias))
     except:
         print('not found')
@@ -167,6 +167,7 @@ def findHitbox(character, request):
         for x in session.execute(stmt):
             parsedfilesuffixes = imageparser.imageparser(x)
             for j in parsedfilesuffixes:
+                print('J: ' + j)
                 image_url_list.append(f"https://wiki.gbl.gg{j}")
 
             return image_url_list

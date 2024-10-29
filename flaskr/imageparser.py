@@ -14,7 +14,6 @@ def imageparser(hitboxfield):
             x = x.replace(",", "")
             x = x.replace("'", "")
             list_of_suffixes.append(x)
-        print(filesplit)
         # for i in filesplit:
         #     list_of_suffixes.append(i)
         href_list = []
@@ -28,7 +27,7 @@ def imageparser(hitboxfield):
                 # Find all hyperlinks on the page
                 links = soup.find_all('a')
                 #print("\nHyperlinks on the page:")
-                print(type(hitboxfield))
+                #print(type(hitboxfield))
                 hitboxfieldstring = ''.join(map(str,list_of_suffixes[0]))
                 for link in links:
                     href = link.get('href')
@@ -39,13 +38,13 @@ def imageparser(hitboxfield):
                     #     print('HREF: ' + str(href))
                     #     href_list.append(href)
                     if hitboxfieldstring in str(href):
-                        print('FOUND HREF: ' + href)
+                        #print('FOUND HREF: ' + href)
                         href_list.append(str(href))
                         break
                     #print(f"Text: {text}, URL: {href}")
             else:
                 print(f"Failed to retrieve the page. Status code: {response.status_code}")
-        print('HREF LIST: ' + str(href_list))
+        #print('HREF LIST: ' + str(href_list))
         return(href_list)
     except Exception as e:
         print(f"An error occurred: {e}")

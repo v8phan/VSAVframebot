@@ -167,7 +167,6 @@ def findHitbox(character, request):
         for x in session.execute(stmt):
             parsedfilesuffixes = imageparser.imageparser(x)
             for j in parsedfilesuffixes:
-                print('J: ' + j)
                 image_url_list.append(f"https://wiki.gbl.gg{j}")
 
             return image_url_list

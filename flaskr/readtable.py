@@ -74,7 +74,7 @@ engine = create_engine(connection_str, echo=True)
 #             )
 
 def formatMove(dic):
-    print(dic)
+    #print(dic)
     formattedString = ""
     for item in dic:
         formattedString += item + ': ' + str(dic[item]) + '\n'

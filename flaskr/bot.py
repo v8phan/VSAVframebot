@@ -148,6 +148,48 @@ async def on_message(message):
                 )
             await message.channel.send(embed=embed)
 
+    if message.content.startswith("Vsavbot"):
+        try:
+            messagesplit = message.content.split()
+            inputChara = getCharByAlias(charAliases, messagesplit[1])
+            inputMove = messagesplit[2].upper()
+        except:
+            await message.channel.send(
+                "Please enter a character and a move ('VSAVbot Victor 5LP'). To request the movelist enter character and 'movelist' ('VSAVbot Victor movelist')"
+            )
+
+        embed = discord.Embed(
+            colour=discord.Colour.dark_green(), description=inputMove, title=inputChara
+        )
+
+        if inputChara not in characterList:
+            await message.channel.send(
+                "Character does not exist. Use 'movelist' to return a character's movelist (VSAVbot Victor movelist)."
+            )
+
+        if inputMove == "MOVELIST":
+            embed.set_thumbnail(url=findCharPic(inputChara))
+            displaymovelist = lookupMoveList(inputChara)
+            embed.add_field(name="movelist", value=displaymovelist)
+            await message.channel.send(embed=embed)
+
+        else:
+            embed.set_thumbnail(url=findCharPic(inputChara))
+            displaymoves = lookupMove(inputChara, inputMove)
+            embed.add_field(name="", value=str(displaymoves))
+            displayHitboxes = findHitbox(inputChara, inputMove)
+            try:
+                for x in displayHitboxes:
+                    # print(x)
+                    embed.set_image(url=x)
+                    # for some reason sending embed here will send all of the hitbox pics if there are multiple but in separate embeds
+                    # await message.channel.send(embed=embed)
+            except:
+                await message.channel.send(
+                    "Move does not exist. Use 'movelist' to return a character's movelist (VSAVbot Victor movelist)."
+                )
+            await message.channel.send(embed=embed)
+
     if message.content.startswith("Ping page"):
         await message.channel.send(
             requests.get(
@@ -158,3 +200,4 @@ async def on_message(message):
 
 DC_TOKEN = os.getenv("DC_TOKEN")
 client.run(DC_TOKEN)
+

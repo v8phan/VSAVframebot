@@ -33,7 +33,7 @@ class Move(Base):
     input: Mapped[str]
     images: Mapped[str]
     hitboxes: Mapped[str]
-    reddmg: Mapped[str]
+    totaldmg: Mapped[str]
     whitedmg: Mapped[str]
     guard: Mapped[str] 
     startup: Mapped[str]

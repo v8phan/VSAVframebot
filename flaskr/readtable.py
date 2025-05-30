@@ -25,7 +25,7 @@ engine = create_engine(connection_str, echo=True)
 
 # def lookupMove(character, request):
 #     stmt = select(
-#         Move.reddmg,
+#         Move.totaldmg,
 #         Move.whitedmg,
 #         Move.guard,
 #         Move.startup,
@@ -43,7 +43,7 @@ engine = create_engine(connection_str, echo=True)
 #     with Session(engine) as session:
 #         for x in session.execute(stmt):
 #             return (
-#                 "reddmg: "
+#                 "totaldmg: "
 #                 + x[0]
 #                 + "\nwhitedmg: "
 #                 + x[1]
@@ -82,7 +82,7 @@ def formatMove(dic):
 
 def lookupMove(character, request):
     stmt = select(
-        Move.reddmg,
+        Move.totaldmg,
         Move.whitedmg,
         Move.guard,
         Move.startup,
@@ -97,9 +97,9 @@ def lookupMove(character, request):
         Move.meter,
         Move.reaction,
     ).where(Move.chara == character, Move.input == request)
-    # movepropdict = {'reddmg': x[0], 'whitedmg': x[1], 'guard': x[2], 'startup': x[3], 'active': x[4]}
+    # movepropdict = {'totaldmg': x[0], 'whitedmg': x[1], 'guard': x[2], 'startup': x[3], 'active': x[4]}
     movepropdict = {
-        "reddmg": "",
+        "totaldmg": "",
         "whitedmg": "",
         "guard": "",
         "startup": "",
@@ -117,7 +117,7 @@ def lookupMove(character, request):
     res = {}
     with Session(engine) as session:
         for x in session.execute(stmt):
-            movepropdict["reddmg"] = x[0]
+            movepropdict["totaldmg"] = x[0]
             movepropdict["whitedmg"] = x[1]
             movepropdict["guard"] = x[2]
             movepropdict["startup"] = x[3]
